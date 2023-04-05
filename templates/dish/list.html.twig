@@ -2,6 +2,28 @@
 
 {% block body %}
 
-  <div>Liste compléte des plats classés par catégorie</div>
+  <div class="container-fluid">
+
+    <h1 class="text-center mb-5">Au menu</h1>
+
+      <h2 class="text-center">Entrées</h2>
+
+      <h2 class="text-center">Plats</h2>
+
+        <section class="d-flex flex-wrap justify-content-center my-5">
+          {% for dish in dishes %}
+            <div class="row m-4">
+              <div class="col-12 text-center"> {{ dish.name}} </div>
+              <div class="col-12"> {{ dish.description}} </div>
+              <div class="col-12 text-center"> {{ dish.price}} </div>
+            </div>
+          {% endfor %}
+        </section>
+
+      <h2 class="text-center">Desserts</h2>
+
+      <h2 class="text-center">Boissons</h2>
+
+  </div>
 
 {% endblock %}

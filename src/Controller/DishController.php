@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\DishRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,11 @@ class DishController extends AbstractController {
 
 
     #[Route("/dish-list", name: "dish_list")]
-    public function getAll(): Response {
-        return $this->render('dish/list.html.twig');
+    public function getAll(DishRepository $repo): Response {
+        $dishes = $repo->findAll();
+        return $this->render('dish/list.html.twig', [
+            "dishes" => $dishes,
+        ]);
     }
 
 }
