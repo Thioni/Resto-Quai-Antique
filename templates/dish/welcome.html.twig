@@ -2,6 +2,25 @@
 
 {% block body %}
 
-  <div>Photos des plats vedettes + bouton reservation</div>
+    <section class="my-5">
+    <div class="row mx-auto justify-content-center">
+      {% for dish in dishes %}
+      {% if dish.name == "Gloubiboulga" %}
+      <div class="col-md-6 col-xl-4"> 
+        <div class="row text-center mb-3">
+          <div class="col-12"> {{ dish.name}} </div>
+          <div class="col-12"> 
+            {% for photo in photos %}
+            {% if loop.first %}
+              <img src="{{ photo.path }}" alt="nope">
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}  
+      {% endfor %}
+    </div>
+  </section>
 
 {% endblock %}
