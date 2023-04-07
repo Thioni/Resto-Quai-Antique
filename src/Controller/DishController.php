@@ -15,12 +15,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class DishController extends AbstractController {
 
     #[Route("/", name: "dish_selection")]
-    public function getSelection(DishRepository $repo, PhotoRepository $picRepo): Response {
+    public function getSelection(DishRepository $repo, PhotoRepository $photoRepo): Response {
         $dishes = $repo->findAll();
-        $photos = $picRepo->findAll();
+        $photos = $photoRepo->findBy(["selected" => true]);
+
+        $selectedPhotos = [];
+        foreach ($dishes as $dish) {
+            foreach ($photos as $photo) {
+                if ($photo->getDish()->getId() === $dish->getId()) {
+                    $selectedPhotos[$dish->getId()] = $photo;
+                    break;
+                }
+            }
+        }
+
         return $this->render('dish/welcome.html.twig', [
             "dishes" => $dishes,
-            "photos" => $photos,
+            "selectedPhotos" => $selectedPhotos,
         ]);
     }
 

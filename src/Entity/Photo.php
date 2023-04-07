@@ -22,6 +22,9 @@ class Photo
     #[ORM\ManyToOne(inversedBy: 'photo')]
     private ?Dish $dish = null;
 
+    #[ORM\Column]
+    private ?bool $selected = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Photo
     public function setDish(?Dish $dish): self
     {
         $this->dish = $dish;
+
+        return $this;
+    }
+
+    public function isSelected(): ?bool
+    {
+        return $this->selected;
+    }
+
+    public function setSelected(bool $selected): self
+    {
+        $this->selected = $selected;
 
         return $this;
     }
