@@ -2,36 +2,49 @@
 
 {% block body %}
 
-    <section class="my-5">
-    <div class="row mx-auto justify-content-center">
-      {% for dish in dishes %}
-      {% if dish.name == "Gloubiboulga" %}
-      <div class="col-md-6 col-xl-4"> 
-        <div class="row text-center mb-3">
-          <div class="col-12"> {{ dish.name}} </div>
-          <div class="col-12">
-              <img src="{{ selectedPhotos[dish.id].path }}" alt="nope">
-          </div>
-        </div>
-      </div>
-      {% endif %}  
-      {% endfor %}
-    </div>
+  <div class="container-fluid">
 
-    <div class="row mx-auto justify-content-center">
-      {% for dish in dishes %}
-      {% if dish.name == "Kloug" %}
-      <div class="col-md-6 col-xl-4"> 
-        <div class="row text-center mb-3">
-          <div class="col-12"> {{ dish.name}} </div>
-          <div class="col-12">
-              <img src="{{ selectedPhotos[dish.id].path }}" alt="nope">
+    <section class="my-5">
+
+      <div class="row mx-auto justify-content-center">
+
+        {% for dish in dishes %}
+        {% if dish.name == "Gloubiboulga" %}
+        <div class="order-xl-1 col-md-6 col-xl-4"> 
+          <div class="row text-center mb-3">
+            <div class="col-12"> {{ dish.name}} </div>
+            <div class="col-12">
+                <img src="{{ selectedPhoto[dish.id].path }}" alt="nope">
+            </div>
           </div>
         </div>
+        {% endif %}  
+        {% endfor %}
+
+        <div class="order-first order-xl-2 col-md-12 col-xl-4 mx-auto text-center justify-content-center">
+          <div>*Insérer ici une magnifique photo du restaurant*</div>
+          <div class="col"> 
+            <a href="{{ path('user_booking') }}" class="btn btn-dark">Réserver</a>
+          </div>
+        </div>
+
+        {% for dish in dishes %}
+        {% if dish.name in ["Kloug", "Gencives de porc", "Marinade de poulpe", "Steak de tyrannosaure"] %}
+        <div class="order-xl-3 col-md-6 col-xl-4"> 
+          <div class="row text-center mb-3">
+            <div class="col-12"> {{ dish.name}} </div>
+            <div class="col-12">
+                <img src="{{ selectedPhoto[dish.id].path }}" alt="nope">
+            </div>
+          </div>
+        </div>
+        {% endif %}  
+        {% endfor %}
+        
       </div>
-      {% endif %}  
-      {% endfor %}
-    </div>
-  </section>
+
+    </section>
+
+  </div>
 
 {% endblock %}

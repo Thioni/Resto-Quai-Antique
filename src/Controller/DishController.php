@@ -19,11 +19,11 @@ class DishController extends AbstractController {
         $dishes = $repo->findAll();
         $photos = $photoRepo->findBy(["selected" => true]);
 
-        $selectedPhotos = [];
+        $selectedPhoto = [];
         foreach ($dishes as $dish) {
             foreach ($photos as $photo) {
                 if ($photo->getDish()->getId() === $dish->getId()) {
-                    $selectedPhotos[$dish->getId()] = $photo;
+                    $selectedPhoto[$dish->getId()] = $photo;
                     break;
                 }
             }
@@ -31,7 +31,7 @@ class DishController extends AbstractController {
 
         return $this->render('dish/welcome.html.twig', [
             "dishes" => $dishes,
-            "selectedPhotos" => $selectedPhotos,
+            "selectedPhoto" => $selectedPhoto,
         ]);
     }
 
