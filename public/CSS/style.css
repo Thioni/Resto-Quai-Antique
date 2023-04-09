@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&family=Lora&family=Montserrat&display=swap');
+
+body {
+    background-color: #B6AC97;
+    font-family: 'Lora', serif;
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+nav, .btn {
+    background-color: #392C1E;
+}
+
+.btn {
+    font-family: 'Hind Madurai', sans-serif;
+}
+
+.booking {
+    background-color: #906417;
+    border: 1px solid #392C1E;
+    border-radius: 3px 3px 0 0;
+    /* Les images utilsées ont une largeur de 320Px */
+    /* + 2px pour ajuster les bordures */
+    width: 322px;
+}
+
+.test {
+    border-bottom: 1px solid #392C1E;
+    border-left: 1px solid #392C1E;
+    border-right: 1px solid #392C1E;
+}
