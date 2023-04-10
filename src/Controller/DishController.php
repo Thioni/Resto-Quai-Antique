@@ -52,11 +52,9 @@ class DishController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Dump temporaire à supprimer //
-            dump($dish);
-            // $em = $doctrine->getManager();
-            // $em->persist($dish);
-            // $em->flush();
+            $em = $doctrine->getManager();
+            $em->persist($dish);
+            $em->flush();
             return $this->redirectToRoute("dish_list");
         }
 
