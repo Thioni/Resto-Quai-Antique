@@ -1,22 +1,35 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Liste des plats{% endblock %}
+
 {% block body %}
+
+  <div class="text-center text-light bg-success">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+      {{ flashMessage}}
+    {% endfor %}
+  </div>
 
   <div class="container-fluid">
 
-    <h1 class="text-center mb-5">Au menu</h1>
+    <h1 class="text-center my-5">Au menu</h1>
 
       <h2 class="text-center">Entrées</h2>
 
         <section class="my-5">
-          <div class="row mx-auto justify-content-center">
+          <div class="row justify-content-center">
             {% for dish in dishes %}
             {% if dish.category == "Entrée" %}
             <div class="col-md-6 col-xl-4"> 
               <div class="row text-center mb-3">
                 <div class="col-12"> {{ dish.name}} </div>
                 <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}} </div>
+                <div class="col-12"> {{ dish.price}}€</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div>
+                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                </div>
+                {% endif %}
               </div>
             </div>
             {% endif %}  
@@ -27,14 +40,19 @@
       <h2 class="text-center">Plats</h2>
 
         <section class="my-5">
-          <div class="row mx-auto justify-content-center">
+          <div class="row justify-content-center">
             {% for dish in dishes %}
             {% if dish.category == "Plat" %}
             <div class="col-md-6 col-xl-4"> 
               <div class="row text-center mb-3">
                 <div class="col-12"> {{ dish.name}} </div>
                 <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}} </div>
+                <div class="col-12"> {{ dish.price}}€</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div>
+                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                </div>
+                {% endif %}
               </div>
             </div>
             {% endif %}  
@@ -45,14 +63,19 @@
       <h2 class="text-center">Desserts</h2>
 
         <section class="my-5">
-          <div class="row w-100 mx-auto justify-content-center">
+          <div class="row justify-content-center">
             {% for dish in dishes %}
             {% if dish.category == "Dessert" %}
             <div class="col-md-6 col-xl-4"> 
               <div class="row text-center mb-3">
                 <div class="col-12"> {{ dish.name}} </div>
                 <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}} </div>
+                <div class="col-12"> {{ dish.price}}€</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div>
+                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                </div>
+                {% endif %}
               </div>
             </div>
             {% endif %}  
@@ -63,14 +86,19 @@
       <h2 class="text-center">Vins</h2>
 
         <section class="my-5">
-          <div class="row mx-auto justify-content-center">
+          <div class="row justify-content-center">
             {% for dish in dishes %}
             {% if dish.category == "Vin" %}
             <div class="col-md-6 col-xl-4"> 
               <div class="row text-center mb-3">
                 <div class="col-12"> {{ dish.name}} </div>
                 <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}} </div>
+                <div class="col-12"> {{ dish.price}}€</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div>
+                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                </div>
+                {% endif %}
               </div>
             </div>
             {% endif %}  
@@ -81,14 +109,19 @@
       <h2 class="text-center">Boissons</h2>
 
         <section class="my-5">
-          <div class="row mx-auto justify-content-center">
+          <div class="row justify-content-center">
             {% for dish in dishes %}
             {% if dish.category == "Boisson" %}
             <div class="col-md-6 col-xl-4"> 
               <div class="row text-center mb-3">
                 <div class="col-12"> {{ dish.name}} </div>
                 <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}} </div>
+                <div class="col-12"> {{ dish.price}}€</div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <div>
+                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                </div>
+                {% endif %}
               </div>
             </div>
             {% endif %}  

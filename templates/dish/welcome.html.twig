@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Accueil{% endblock %}
+
 {% block body %}
 
   <div class="container-fluid">
@@ -10,7 +12,7 @@
 
       <div class="row justify-content-center">
 
-        <div class="order-xl-2 col-md-12 col-xl-4 mx-auto mt-3 mb-5 mb-xl-0
+        <div class="order-xl-2 col-md-12 col-xl-4 mt-3 mb-5 mb-xl-0
          d-flex justify-content-center align-items-center">
           <div class="row text-center">
             <div class="col-12 mb-3">
@@ -18,7 +20,7 @@
                occaecat id irure irure mollit. Cillum excepteur est non eiusmod reprehenderit consectetur laboris.</p>
             </div>
             <div class="col-12">
-              <a href="{{ path('user_booking') }}" class="btn text-light">Réserver</a>
+              <a href="{{ path('user_booking') }}" class="btn">Réserver</a>
             </div>
             </div>
         </div>

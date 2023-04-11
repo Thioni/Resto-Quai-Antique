@@ -3,10 +3,12 @@
 body {
     background-color: #B6AC97;
     font-family: 'Lora', serif;
+    overflow-wrap: break-word;
 }
 
 h1, h2 {
     font-family: 'Montserrat', sans-serif;
+    text-decoration: underline;
 }
 
 nav, .btn {
@@ -15,6 +17,7 @@ nav, .btn {
 
 .btn {
     font-family: 'Hind Madurai', sans-serif;
+    color: white;
 }
 
 .booking {

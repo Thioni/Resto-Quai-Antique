@@ -1,6 +1,14 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Ajouter ou modifier un plat{% endblock %}
+
 {% block body %}
+
+    {% if app.request.get("_route") =="create_dish" %}
+        <h1 class="text-center mt-5">Ajouter un plat</h1>
+    {% else %}
+        <h1 class="text-center mt-5">Modifier {{ dish.name }}</h1>
+    {% endif %}
 
     {{ form_start(form) }}
 
@@ -27,9 +35,20 @@
                 </div>
             </div>
         
-            <div class="col-12 mt-5">
-                <input type="submit" value="Ajouter" class="btn text-light">
+            <div class="row justify-content-center">
+                <div class="col-2 mt-5">
+                    <a href="{{ path('dish_list') }}" class="btn">Annuler</a>
+                </div>
+            {% if app.request.get('_route') == 'create_dish' %}
+                <div class="col-2 mt-5">
+                    <input type="submit" value="Ajouter" class="btn">
+                </div>
+            {% else %}
+                <div class="col-2 mt-5">
+                    <input type="submit" value="Modifier" class="btn">
+                </div>
             </div>
+            {% endif %}
 
         </div>
 

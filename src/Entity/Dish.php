@@ -6,6 +6,7 @@ use App\Repository\DishRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DishRepository::class)]
 class Dish
@@ -16,9 +17,21 @@ class Dish
     private ?int $id = null;
 
     #[ORM\Column(length: 80)]
+    #[Assert\Length (
+        min: 2,
+        max: 80,
+        minMessage: 'Le nom doit comprendre au moins 2 caractères',
+        maxMessage: 'Le nom doit comprendre au plus 80 caractères'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Length (
+        min: 10,
+        max: 255,
+        minMessage: 'La déscription doit comprendre au moins 10 caractères',
+        maxMessage: 'La déscription doit comprendre au plus 255 caractères'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]

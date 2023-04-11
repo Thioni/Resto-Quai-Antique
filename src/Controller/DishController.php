@@ -44,7 +44,7 @@ class DishController extends AbstractController {
         ]);
     }
 
-    #[Route("/create-dish", name: "create_dish")]
+    #[Route("admin/create-dish", name: "create_dish")]
     public function create(Request $request, ManagerRegistry $doctrine): Response {
         $dish = new Dish();
 
@@ -55,11 +55,30 @@ class DishController extends AbstractController {
             $em = $doctrine->getManager();
             $em->persist($dish);
             $em->flush();
+            $this->addFlash('success', sprintf('%s ajouté à la liste.', $dish->getName()));
             return $this->redirectToRoute("dish_list");
         }
 
         return $this->render('dish/create.html.twig', [
             "form" => $form
+        ]);
+    }
+
+    #[Route("admin/update-dish/{id}", name: "update_dish")]
+    public function update(Request $request, ManagerRegistry $doctrine, Dish $dish): Response {
+
+        $form = $this->createForm(DishType::class, $dish);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            $this->addFlash('success', sprintf('%s a été modifié.', $dish->getName()));
+            return $this->redirectToRoute("dish_list");
+        }
+
+        return $this->render('dish/create.html.twig', [
+            "form" => $form,
+            "dish" => $dish
         ]);
     }
 

@@ -14,7 +14,10 @@ class DishType extends AbstractType {
     {
         $builder
             ->add('name', TextType::class, ['label' => "Nom"])
-            ->add('description', TextType::class, ['label' => "Déscription"])
+            ->add('description', TextType::class, [
+                'label' => "Déscription",
+                'attr' => ['style' => 'height: 150px; width: 100%'],                
+            ])
             ->add('price', NumberType::class, ['label' => "Prix"])
             ->add('category', ChoiceType::class, [
                 'label' => "Catégorie",
