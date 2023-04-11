@@ -21,13 +21,18 @@
             {% for dish in dishes %}
             {% if dish.category == "Entrée" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="row text-center mb-3">
-                <div class="col-12"> {{ dish.name}} </div>
-                <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}}€</div>
+              <div class="dishCard descText row text-center mb-3"mx-auto >
+                <div class="dishNameList col-12"> {{ dish.name}} </div>
+                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="dishNameList col-12"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <div>
-                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                <div class="row justify-content-beetween mx-auto my-1">
+                  <div class="col my-1">
+                    <a href="#" class="btn">Supprimer</a>
+                  </div>
+                  <div class="col my-1">
+                    <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
+                  </div>
                 </div>
                 {% endif %}
               </div>
@@ -44,15 +49,20 @@
             {% for dish in dishes %}
             {% if dish.category == "Plat" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="row text-center mb-3">
-                <div class="col-12"> {{ dish.name}} </div>
-                <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}}€</div>
-                {% if is_granted('ROLE_ADMIN') %}
-                <div>
-                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+              <div class="dishCard descText row text-center mx-auto mb-3">
+                <div class="dishNameList col-12"> {{ dish.name}} </div>
+                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="dishNameList col-12"> {{ dish.price}}€</div>
+                {# {% if is_granted('ROLE_ADMIN') %} #}
+                <div class="row justify-content-beetween mx-auto">
+                  <div class="col my-1">
+                    <a href="#" class="btn">Supprimer</a>
+                  </div>
+                  <div class="col my-1">
+                    <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
+                  </div>
                 </div>
-                {% endif %}
+                {# {% endif %} #}
               </div>
             </div>
             {% endif %}  
@@ -67,13 +77,18 @@
             {% for dish in dishes %}
             {% if dish.category == "Dessert" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="row text-center mb-3">
-                <div class="col-12"> {{ dish.name}} </div>
-                <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}}€</div>
+              <div class="dishCard descText row text-center mx-auto mb-3">
+                <div class="dishNameList col-12"> {{ dish.name}} </div>
+                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="dishNameList col-12"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <div>
-                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                <div class="row justify-content-beetween mx-auto my-1">
+                  <div class="col my-1">
+                    <a href="#" class="btn">Supprimer</a>
+                  </div>
+                  <div class="col my-1">
+                    <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
+                  </div>
                 </div>
                 {% endif %}
               </div>
@@ -90,13 +105,18 @@
             {% for dish in dishes %}
             {% if dish.category == "Vin" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="row text-center mb-3">
-                <div class="col-12"> {{ dish.name}} </div>
-                <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}}€</div>
+              <div class="dishCard descText row text-center mx-auto mb-3">
+                <div class="dishNameList col-12"> {{ dish.name}} </div>
+                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="dishNameList col-12"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <div>
-                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                <div class="row justify-content-beetween mx-auto my-1">
+                  <div class="col my-1">
+                    <a href="#" class="btn">Supprimer</a>
+                  </div>
+                  <div class="col my-1">
+                    <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
+                  </div>
                 </div>
                 {% endif %}
               </div>
@@ -113,13 +133,18 @@
             {% for dish in dishes %}
             {% if dish.category == "Boisson" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="row text-center mb-3">
-                <div class="col-12"> {{ dish.name}} </div>
-                <div class="col-12"> {{ dish.description}} </div>
-                <div class="col-12"> {{ dish.price}}€</div>
+              <div class="dishCard descText row text-center mx-auto mb-3">
+                <div class="dishNameList col-12"> {{ dish.name}} </div>
+                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="dishNameList col-12"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <div>
-                  <a href="admin/update-dish/{{ dish.id }}" class="btn mt-3">Modifier</a>
+                <div class="row justify-content-beetween mx-auto my-1">
+                  <div class="col my-1">
+                    <a href="#" class="btn">Supprimer</a>
+                  </div>
+                  <div class="col my-1">
+                    <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
+                  </div>
                 </div>
                 {% endif %}
               </div>

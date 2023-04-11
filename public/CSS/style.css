@@ -11,16 +11,33 @@ h1, h2 {
     text-decoration: underline;
 }
 
-nav, .btn {
+nav, .btn, .dishNameList {
     background-color: #392C1E;
 }
 
 .btn {
     font-family: 'Hind Madurai', sans-serif;
+}
+
+.btn, .dishCard, .dishName {
     color: white;
 }
 
-.booking {
+.descBox {
+    height: 170px;
+}
+
+.dishCard {
+    border: 1px solid #392C1E;
+    border-radius: 2px;
+}
+
+.descText {
+    background-color: #906417;
+    
+}
+
+.dishName {
     background-color: #906417;
     border: 1px solid #392C1E;
     border-radius: 3px 3px 0 0;
@@ -29,8 +46,14 @@ nav, .btn {
     width: 322px;
 }
 
-.test {
-    border-bottom: 1px solid #392C1E;
-    border-left: 1px solid #392C1E;
-    border-right: 1px solid #392C1E;
+@media screen and (min-width : 756px) {
+    .descBox {
+        height: 190px;  
+    }
+}
+
+@media screen and (min-width : 1512px) {
+    .descBox {
+        height: 140px;  
+    }
 }
