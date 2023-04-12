@@ -53,7 +53,7 @@
                 <div class="dishNameList col-12"> {{ dish.name}} </div>
                 <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
                 <div class="dishNameList col-12"> {{ dish.price}}€</div>
-                {# {% if is_granted('ROLE_ADMIN') %} #}
+                {% if is_granted('ROLE_ADMIN') %}
                 <div class="row justify-content-beetween mx-auto">
                   <div class="col my-1">
                     <a href="#" class="btn">Supprimer</a>
@@ -62,7 +62,7 @@
                     <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
                   </div>
                 </div>
-                {# {% endif %} #}
+                {% endif %}
               </div>
             </div>
             {% endif %}  

@@ -32,10 +32,20 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('user_booking') }}">Réserver</a>
               </li>
+              {% if is_granted('ROLE_ADMIN') %}
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('create_dish') }}">Ajouter un plat</a>
               </li>
+              {% endif %}
             </ul>
+          <div class="text-light ms-auto">
+            {% if app.user %}
+              <span>{{ app.user.email }} </span>
+              <a href="{{ path('app_logout') }}" class="btn btn-danger ms-md-3">Se déconnecter</a>
+            {% else %}
+              <a href="/login" class="btn btn-light">Se connecter</a>
+          </div>
+            {% endif %}
           </div>
         </div>
       </nav>

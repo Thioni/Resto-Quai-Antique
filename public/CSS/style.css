@@ -3,7 +3,6 @@
 body {
     background-color: #B6AC97;
     font-family: 'Lora', serif;
-    overflow-wrap: break-word;
 }
 
 h1, h2 {
@@ -15,12 +14,21 @@ nav, .btn, .dishNameList {
     background-color: #392C1E;
 }
 
-.btn {
-    font-family: 'Hind Madurai', sans-serif;
+.btn:hover, .descText, .dishName {
+    background-color: #906417;
 }
 
 .btn, .dishCard, .dishName {
     color: white;
+}
+
+.btn:hover, .descText, .dishCard, .dishName {
+    border: 1px solid #392C1E;
+}
+
+.btn {
+    font-family: 'Hind Madurai', sans-serif;
+    border: 1px solid #906417;
 }
 
 .descBox {
@@ -28,18 +36,10 @@ nav, .btn, .dishNameList {
 }
 
 .dishCard {
-    border: 1px solid #392C1E;
     border-radius: 2px;
 }
 
-.descText {
-    background-color: #906417;
-    
-}
-
 .dishName {
-    background-color: #906417;
-    border: 1px solid #392C1E;
     border-radius: 3px 3px 0 0;
     /* Les images utilsées ont une largeur de 320Px */
     /* + 2px pour ajuster les bordures */
