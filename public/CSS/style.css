@@ -10,11 +10,15 @@ h1, h2 {
     text-decoration: underline;
 }
 
-nav, .btn, .dishNameList {
+nav, .btn, .dishNameList, .dishName {
     background-color: #392C1E;
 }
 
-.btn:hover, .descText, .dishName {
+.descText {
+    background-color: #7c653e;
+}
+
+.btn:hover {
     background-color: #906417;
 }
 
@@ -28,7 +32,6 @@ nav, .btn, .dishNameList {
 
 .btn {
     font-family: 'Hind Madurai', sans-serif;
-    border: 1px solid #906417;
 }
 
 .descBox {
