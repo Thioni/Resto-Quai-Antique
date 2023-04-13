@@ -19,11 +19,11 @@ class Photo
     #[ORM\Column(length: 255)]
     private ?string $path = null;
 
-    #[ORM\ManyToOne(inversedBy: 'photo')]
-    private ?Dish $dish = null;
-
     #[ORM\Column]
     private ?bool $selected = null;
+
+    #[ORM\ManyToOne(inversedBy: 'photo')]
+    private ?Dish $dish = null;
 
     public function getId(): ?int
     {
@@ -54,6 +54,18 @@ class Photo
         return $this;
     }
 
+    public function isSelected(): ?bool
+    {
+        return $this->selected;
+    }
+
+    public function setSelected(bool $selected): self
+    {
+        $this->selected = $selected;
+
+        return $this;
+    }
+    
     public function getDish(): ?Dish
     {
         return $this->dish;
@@ -66,15 +78,4 @@ class Photo
         return $this;
     }
 
-    public function isSelected(): ?bool
-    {
-        return $this->selected;
-    }
-
-    public function setSelected(bool $selected): self
-    {
-        $this->selected = $selected;
-
-        return $this;
-    }
 }
