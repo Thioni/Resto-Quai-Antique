@@ -23,7 +23,7 @@ class PhotoType extends AbstractType {
                 'expanded' => false,
             ])
             ->add('title', TextType::class, ['label' => "Titre"])
-            ->add('path', TextType::class, ['label' => "Adresse d'hébergement"])
+            ->add('path', TextType::class, ['label' => "Adresse d'hébergement", 'attr' => ['id' => 'photo_path']])
             ->add('selected', CheckboxType::class, [
                 'label' => "Image par défaut",
                 'required' => false,

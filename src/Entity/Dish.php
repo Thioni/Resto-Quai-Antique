@@ -44,6 +44,10 @@ class Dish
     private Collection $allergen;
 
     #[ORM\OneToMany(mappedBy: 'dish', targetEntity: Photo::class)]
+    #[Assert\Count(
+        max: 2,
+        maxMessage: 'Vous ne pouvez pas avoir plus de {{ limit }} photos par plat.'
+    )]
     private Collection $photo;
 
     public function __construct()

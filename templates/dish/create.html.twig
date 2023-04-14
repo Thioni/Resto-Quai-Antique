@@ -12,12 +12,20 @@
 
     {{ form_start(form) }}
 
-        <div class="row justify-content-center text-center mx-0 mt-5">
+        <div class="row text-center mx-0 mt-5">
 
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6 col-xl-4">
                     {{ form_row(form.name) }}
                 </div>
+            </div>
+            <div class="row justify-content-center">
+                {% for photo in form.vars.value.photo %}
+                    <div class="col-lg-4 mb-2">
+                        <img src="{{ asset(photo.path) }}" 
+                        alt="Photo du plat" class="img-thumbnail">
+                    </div>
+                {% endfor %}
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 col-lg-6 col-xl-4">
@@ -36,15 +44,15 @@
             </div>
         
             <div class="row justify-content-center">
-                <div class="col-2 mt-5">
+                <div class="col-6 col-md-2 mt-5">
                     <a href="{{ path('dish_list') }}" class="btn">Annuler</a>
                 </div>
             {% if app.request.get('_route') == 'create_dish' %}
-                <div class="col-2 mt-5">
+                <div class="col-6 col-md-2 mt-5">
                     <input type="submit" value="Ajouter" class="btn">
                 </div>
             {% else %}
-                <div class="col-2 mt-5">
+                <div class="col-6 col-md-2 mt-5">
                     <input type="submit" value="Modifier" class="btn">
                 </div>
             </div>
