@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Allergen;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -28,6 +30,13 @@ class DishType extends AbstractType {
                     "Vin" => "Vin",
                     "Boisson" => "Boisson",
                 ] 
+            ])
+            ->add('allergen', EntityType::class, [
+                'class' => Allergen::class,
+                'label' => "Allergènes",
+                'choice_label' => 'ingredient',
+                'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }

@@ -49,10 +49,10 @@
             {% for dish in dishes %}
             {% if dish.category == "Plat" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="dishCard descText row text-center mx-auto mb-3">
-                <div class="dishNameList col-12"> {{ dish.name}} </div>
-                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
-                <div class="dishNameList col-12"> {{ dish.price}}€</div>
+              <div class="row dishCard descText text-center mx-auto mb-3">
+                <div class="col-12 dishNameList"> {{ dish.name}} </div>
+                <div class="col-12 descBox d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="col-12 dishNameList"> {{ dish.price}}€</div>
                 <div class="row justify-content-center">
                   {% for photo in dish.getPhoto() %}
                     <div class="col-12 col-lg-6">
@@ -60,6 +60,14 @@
                     </div>
                   {% endfor %}
                 </div>
+                {# Temporary allergen disclaimer #}
+                <div class="row mx-0 bg-light">
+                    {% for allergen in dish.getAllergen() %}
+                      <div class="col-12 col-lg-6 text-danger fst-italic">
+                          {{ allergen.ingredient}}
+                      </div>
+                    {% endfor %}
+                 </div>
 
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="row justify-content-beetween mx-auto">
@@ -85,10 +93,10 @@
             {% for dish in dishes %}
             {% if dish.category == "Dessert" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="dishCard descText row text-center mx-auto mb-3">
-                <div class="dishNameList col-12"> {{ dish.name}} </div>
-                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
-                <div class="dishNameList col-12"> {{ dish.price}}€</div>
+              <div class="row dishCard descText text-center mx-auto mb-3">
+                <div class="col-12 dishNameList"> {{ dish.name}} </div>
+                <div class="col-12 descBox d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="col-12 dishNameList"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="row justify-content-beetween mx-auto my-1">
                   <div class="col my-1">
@@ -113,10 +121,10 @@
             {% for dish in dishes %}
             {% if dish.category == "Vin" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="dishCard descText row text-center mx-auto mb-3">
-                <div class="dishNameList col-12"> {{ dish.name}} </div>
-                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
-                <div class="dishNameList col-12"> {{ dish.price}}€</div>
+              <div class="row dishCard descText text-center mx-auto mb-3">
+                <div class="col-12 dishNameList"> {{ dish.name}} </div>
+                <div class="col-12 descBox d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="col-12 dishNameList"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="row justify-content-beetween mx-auto my-1">
                   <div class="col my-1">
@@ -141,10 +149,10 @@
             {% for dish in dishes %}
             {% if dish.category == "Boisson" %}
             <div class="col-md-6 col-xl-4"> 
-              <div class="dishCard descText row text-center mx-auto mb-3">
-                <div class="dishNameList col-12"> {{ dish.name}} </div>
-                <div class="descBox col-12 d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
-                <div class="dishNameList col-12"> {{ dish.price}}€</div>
+              <div class="row dishCard descText text-center mx-auto mb-3">
+                <div class="col-12 dishNameList"> {{ dish.name}} </div>
+                <div class="col-12 descBox d-flex justify-content-center align-items-center"> {{ dish.description}} </div>
+                <div class="col-12 dishNameList"> {{ dish.price}}€</div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <div class="row justify-content-beetween mx-auto my-1">
                   <div class="col my-1">
