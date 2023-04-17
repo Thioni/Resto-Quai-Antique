@@ -26,6 +26,14 @@ nav, .btn, .dishNameList, .dishName {
     color: white;
 }
 
+.allergenBtn:hover {
+    color: #392C1E;
+}
+
+.allergenBtn {
+    font-size: smaller;
+}
+
 .btn:hover, .descText, .dishCard, .dishName {
     border: 1px solid #392C1E;
 }
