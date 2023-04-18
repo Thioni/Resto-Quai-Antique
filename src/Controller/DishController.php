@@ -83,4 +83,13 @@ class DishController extends AbstractController {
         ]);
     }
 
+    #[Route("admin/delete-dish/{id}", name: "delete_dish")]
+    public function delete(ManagerRegistry $doctrine, Dish $dish) : Response {
+
+        $em = $doctrine->getManager();
+        $em->remove($dish);
+        $em->flush();
+        return $this->redirectToRoute("dish_list");
+    }
+
 }

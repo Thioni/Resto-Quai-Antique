@@ -43,7 +43,7 @@ class Dish
     #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'dishes')]
     private Collection $allergen;
 
-    #[ORM\OneToMany(mappedBy: 'dish', targetEntity: Photo::class)]
+    #[ORM\OneToMany(mappedBy: 'dish', targetEntity: Photo::class, cascade: ['persist', 'remove'])]
     #[Assert\Count(
         max: 2,
         maxMessage: 'Vous ne pouvez pas avoir plus de {{ limit }} photos par plat.'

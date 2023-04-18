@@ -1,0 +1,19 @@
+<div id="deleteModal{{ dish.id }}" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark">Suppression</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mx-0 text-danger bg-light">       
+              Vous êtes sur le point de supprimer le plat: {{ dish.name }}   
+        </div>
+      </div>
+      <div class="modal-footer justify-content-around">
+        <a href="admin/delete-dish/{{ dish.id }}" class="btn text-danger">Supprimer</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
