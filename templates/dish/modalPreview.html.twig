@@ -1,0 +1,22 @@
+<div id="previewModal{{ dish.id }}" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-dark">{{ dish.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center bg-light">
+          {% for photo in dish.getPhoto %}
+            <div class="col-12 my-2" data-bs-toggle="modal" data-bs-target="#previewModal{{ dish.id }}">
+                <img src="{{ photo.path }}" alt="{{ dish.name }}" class="img-fluid">
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

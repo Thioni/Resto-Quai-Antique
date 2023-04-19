@@ -8,21 +8,22 @@
     <div class="col-12 dishNameList"> {{ dish.price}}€</div>
     <div class="row justify-content-center">
       {% for photo in dish.getPhoto %}
-        <div class="col-12 col-lg-6">
-            <img src="{{ photo.path }}" alt="{{ dish.name }}" class="img-fluid">
+        <div class="col-6" data-bs-toggle="modal" data-bs-target="#previewModal{{ dish.id }}">
+            <img src="{{ photo.path }}" alt="{{ dish.name }}" class="dishPreview img-fluid">
         </div>
+    {% include "dish/modalPreview.html.twig" %}
       {% endfor %}
     </div>
-    {% include "dish/modalAllergen.html.twig"%}
+    {% include "dish/modalAllergen.html.twig" %}
     {% if is_granted('ROLE_ADMIN') %}
-    <div class="row justify-content-beetween mx-auto">
-      <div class="col my-1">
+    <div class="row justify-content-between">
+      <div class="col-3 mt-2 mb-1">
         <div class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{ dish.id }}">
         Supprimer
-        {% include "dish/modalDelete.html.twig"%}
+        {% include "dish/modalDelete.html.twig" %}
         </div>
       </div>
-      <div class="col my-1">
+      <div class="col-3 mt-2 mb-1">
         <a href="admin/update-dish/{{ dish.id }}" class="btn">Modifier</a>
       </div>
     </div>
