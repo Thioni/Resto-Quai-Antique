@@ -61,6 +61,10 @@ nav, .btn, .dishNameList, .dishName {
     max-height: 80px;
 }
 
+.test {
+    height: 100px;
+}
+
 @media screen and (min-width : 756px) {
     .descBox {
         height: 190px;  
