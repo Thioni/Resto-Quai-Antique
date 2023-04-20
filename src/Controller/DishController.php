@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Dish;
 use App\Form\DishType;
-use App\Form\PhotoType;
 use App\Repository\DishRepository;
 use App\Repository\PhotoRepository;
 use Doctrine\Persistence\ManagerRegistry;

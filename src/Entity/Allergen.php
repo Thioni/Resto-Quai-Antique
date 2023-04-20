@@ -21,9 +21,17 @@ class Allergen
     #[ORM\ManyToMany(targetEntity: Dish::class, mappedBy: 'allergen')]
     private Collection $dishes;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'allergy')]
+    private Collection $users;
+
+    #[ORM\ManyToMany(targetEntity: Booking::class, mappedBy: 'allergy')]
+    private Collection $bookings;
+
     public function __construct()
     {
         $this->dishes = new ArrayCollection();
+        $this->users = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -65,6 +73,60 @@ class Allergen
     {
         if ($this->dishes->removeElement($dish)) {
             $dish->removeAllergen($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
+            $user->addAllergy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeAllergy($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->addAllergy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            $booking->removeAllergy($this);
         }
 
         return $this;

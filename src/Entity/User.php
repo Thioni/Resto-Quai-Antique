@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -18,6 +20,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $lastname = null;
+
     #[ORM\Column]
     private array $roles = [];
 
@@ -26,6 +34,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'users')]
+    private Collection $allergy;
+
+    public function __construct()
+    {
+        $this->allergy = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -54,6 +70,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return (string) $this->email;
     }
 
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+    
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+        
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Allergen>
+     */
+    public function getAllergy(): Collection
+    {
+        return $this->allergy;
+    }
+
+    public function addAllergy(Allergen $allergy): self
+    {
+        if (!$this->allergy->contains($allergy)) {
+            $this->allergy->add($allergy);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergen $allergy): self
+    {
+        $this->allergy->removeElement($allergy);
+
+        return $this;
+    }
+    
     /**
      * @see UserInterface
      */
@@ -62,7 +126,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
+        
         return array_unique($roles);
     }
 
@@ -96,4 +160,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
 }
