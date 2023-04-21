@@ -20,12 +20,11 @@ class BookingController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($booking);
-            // $em = $doctrine->getManager();
-            // $em->persist($booking);
-            // $em->flush();
-            // $this->addFlash('success', 'Réservation validée.');
-            // return $this->redirectToRoute("dish_selection");
+            $em = $doctrine->getManager();
+            $em->persist($booking);
+            $em->flush();
+            $this->addFlash('success', 'Réservation validée.');
+            return $this->redirectToRoute("dish_selection");
         }
 
         return $this->render('booking/create.html.twig', [

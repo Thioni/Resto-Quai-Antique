@@ -4,9 +4,17 @@
 
 {% block body %}
 
+ 
+
     <div class="container-fluid">
 
         {{ form_start(form) }}
+
+         {% if form_errors(form) %}
+            <div class="alert alert-danger">
+            {{ form_errors(form) }}
+            </div>
+        {% endif %}
 
         <div class="row justify-content-center mt-5">
              <div class="col-12 col-lg-4 col-xl-2">
@@ -27,7 +35,10 @@
                             {{ form_label(form.seats) }}
                 </div>
                 <div class="col-3 col-lg-2 col-xl-1">
-                            {{ form_widget(form.seats) }}
+                            {{ form_widget(form.seats) }}                            
+                </div>
+                <div class="col-12 text-center">
+                            {{ form_errors(form.seats) }}
                 </div>
                 <div class="col-6 col-lg-6 col-xl-6
                 text-lg-end">
@@ -35,6 +46,9 @@
                 </div>
                 <div class="col-6 col-lg-4 col-xl-2">
                             {{ form_widget(form.timeslot) }}
+                </div>
+                <div class="col-12 text-center">
+                            {{ form_errors(form.timeslot) }}
                 </div>
         </div>
         <div class="row justify-content-end mt-2">

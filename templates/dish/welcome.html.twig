@@ -4,6 +4,12 @@
 
 {% block body %}
 
+  <div class="text-center text-light bg-success">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+      {{ flashMessage}}
+    {% endfor %}
+  </div>
+
   <div class="container-fluid">
 
     <section class="my-5">

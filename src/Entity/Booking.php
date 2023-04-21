@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -16,19 +17,42 @@ class Booking
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(length: 20)]    
+    #[Assert\Length (
+        min: 2,
+        max: 20,
+        minMessage: 'Le prénom doit comporter au moins 2 caractères',
+        maxMessage: 'Le prénom doit comporter au maximum 20 caractères'
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\Length (
+        min: 2,
+        max: 20,
+        minMessage: 'Le nom doit comporter au moins 2 caractères',
+        maxMessage: 'Le nom doit comporter au maximum 20 caractères'
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 254)]
+    #[Assert\Email(
+        message: 'L\'adresse {{ value }} n\'est pas une adresse valide.',
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Assert\GreaterThan(
+        1,
+        message: 'Le nombre de places doit au minimum être égale à 1',
+    )]
     private ?int $seats = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThan(
+        'now',
+        message: 'La date doit être postérieure ou égale à la date actuelle.',
+    )]
     private ?\DateTimeInterface $timeslot = null;
 
     #[ORM\ManyToMany(targetEntity: allergen::class, inversedBy: 'bookings')]

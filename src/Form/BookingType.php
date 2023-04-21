@@ -21,8 +21,11 @@ class BookingType extends AbstractType {
             ->add('email', EmailType::class, ['label' => "Adresse mail"])
             ->add('seats',  IntegerType::class, [
                 'label' => "Nombre de personnes",
-                'attr' => ['class' => 'text-center'],
-                ])
+                'attr' => [
+                    'class' => 'text-center',
+                    'min' => 0 
+                ],
+            ])
             ->add('timeslot', DateTimeType::class, [
                 'label' => "Heure de réservation",
                 'minutes' => range(0, 45, 15),
@@ -39,8 +42,10 @@ class BookingType extends AbstractType {
             ->add('comment', TextType::class, [
                 'label' => "Commentaires",
                 'required' => false,
-                'attr' => ['style' => 'height: 150px'],
-                ])
+                'attr' => [
+                    'style' => 'height: 150px'
+                ],
+            ])
         ;
     }
     
