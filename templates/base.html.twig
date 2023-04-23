@@ -11,11 +11,12 @@
 
         {% block javascripts %}
             <script src="{{ asset('Javascript/bootstrap.bundle.min.js') }}"> </script>
+            <script src="{{ asset('Javascript/app.js') }}" defer> </script>
         {% endblock %}
     </head>
     <body>
 
-      <nav class="navbar navbar-expand-lg navbar-dark">
+      <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Quai Antique</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,5 +55,22 @@
       </nav>
 
         {% block body %}{% endblock %}
+
+      <div class="d-lg-none" id="toTheTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+        </svg>
+      </div>
+
+      <div class="footer text-center fixed-bottom">
+          <p class="mb-0">
+            Ouvert de 11h à 14h et de 18h à 23h
+          </p>
+          <p class="mb-0">
+            Fermé mardi et jeudi
+          </p>
+      </div>
+
+
     </body>
 </html>

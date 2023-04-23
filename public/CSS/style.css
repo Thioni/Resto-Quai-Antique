@@ -10,7 +10,7 @@ h1, h2 {
     text-decoration: underline;
 }
 
-nav, .btn, .dishNameList, .dishName {
+nav, .footer, .btn, .dishNameList, .dishName {
     background-color: #392C1E;
 }
 
@@ -18,11 +18,11 @@ nav, .btn, .dishNameList, .dishName {
     background-color: #7c653e;
 }
 
-.btn:hover {
+.btn:hover, #toTheTop {
     background-color: #906417;
 }
 
-.btn, .dishCard, .dishName {
+.footer, .btn, .dishCard, .dishName, #toTheTop {
     color: white;
 }
 
@@ -30,7 +30,7 @@ nav, .btn, .dishNameList, .dishName {
     color: #392C1E;
 }
 
-.allergenBtn {
+.allergenBtn, .footer {
     font-size: smaller;
 }
 
@@ -61,8 +61,12 @@ nav, .btn, .dishNameList, .dishName {
     max-height: 80px;
 }
 
-.test {
-    height: 100px;
+#toTheTop {
+    position: fixed;
+    right: 15px;
+    bottom: 5px;
+    border-radius: 150px;
+    z-index: 1031
 }
 
 @media screen and (min-width : 756px) {
