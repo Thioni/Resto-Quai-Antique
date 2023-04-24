@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Créer un compte{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.email) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.password) }}
+        {{ form_row(form.allergy) }}
+
+        <div class="row mx-auto mb-5">
+            <div class="col">
+                <input type="submit" value="Ajouter" class="btn">
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+
+
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Allergen;
+use App\Entity\Booking;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -10,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookingType extends AbstractType {
 
@@ -48,5 +50,10 @@ class BookingType extends AbstractType {
             ])
         ;
     }
-    
+
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+          "data_class" => Booking::class
+        ]);
+    }
 };

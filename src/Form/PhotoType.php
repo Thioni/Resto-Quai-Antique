@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Dish;
+use App\Entity\Photo;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhotoType extends AbstractType {
 
@@ -29,5 +31,11 @@ class PhotoType extends AbstractType {
                 'required' => false,
             ])
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver) {
+        $resolver->setDefaults([
+          "data_class" => Photo::class
+        ]);
     }
 }
