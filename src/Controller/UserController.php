@@ -19,6 +19,14 @@ class UserController extends AbstractController {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $em = $doctrine->getManager();
+            // $em->persist($user);
+            // $em->flush();
+            $this->addFlash('success', 'Mail de confirmation envoyé');
+            return $this->redirectToRoute("app_login");
+        }
+
         return $this->render('user/create.html.twig', [
             "form" =>$form
         ]);

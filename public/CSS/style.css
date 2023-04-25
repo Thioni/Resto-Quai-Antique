@@ -52,8 +52,6 @@ nav, .footer, .btn, .dishNameList, .dishName {
 
 .dishName {
     border-radius: 3px 3px 0 0;
-    /* Les images utilsées ont une largeur de 320Px */
-    /* + 2px pour ajuster les bordures */
     width: 322px;
 }
 
@@ -67,6 +65,12 @@ nav, .footer, .btn, .dishNameList, .dishName {
     bottom: 5px;
     border-radius: 150px;
     z-index: 1031
+}
+
+.welcomePreview {
+    height: 215px;
+    width: 322px;
+    object-fit: fill;
 }
 
 @media screen and (min-width : 756px) {

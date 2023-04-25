@@ -4,6 +4,12 @@
 
 {% block body %}
 
+<div class="text-center text-light bg-success">
+  {% for flashMessage in app.session.flashbag.get('success') %}
+    {{ flashMessage}}
+  {% endfor %}
+</div>
+
 <div class ="container">
     <form method="post">
 
@@ -54,5 +60,10 @@
         </div>
 
     </form>
+
+    <div class="row text-center mt-5">
+        <a href="{{ path('create_user') }}"> cliquez ici pour créer un compte</a>
+    </div>
+
 </div>
 {% endblock %}
