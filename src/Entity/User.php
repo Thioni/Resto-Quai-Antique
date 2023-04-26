@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->allergy = new ArrayCollection();
     }
-
+    
     public function getId(): ?int
     {
         return $this->id;
