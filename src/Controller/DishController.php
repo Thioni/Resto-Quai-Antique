@@ -35,13 +35,29 @@ class DishController extends AbstractController {
         ]);
     }
 
-
     #[Route("/dish-list", name: "dish_list")]
     public function getAll(DishRepository $repo): Response {
         $dishes = $repo->findAll();
+        $user = $this->getUser();
+
+        $allergies = [];
+    
+        if ($user) {
+            $allergies = $user->getAllergy();
+        }    
+    
+        $filteredDishes = array_filter($dishes, function ($dish) use ($allergies) {
+            foreach ($allergies as $allergy) {
+                if ($dish->getAllergen()->contains($allergy)) {
+                    return false;
+                }
+            }
+            return true;
+        });
+    
         return $this->render('dish/list.html.twig', [
-            "dishes" => $dishes,
-        ]);
+            "dishes" => $filteredDishes,
+        ]);        
     }
 
     #[Route("admin/create-dish", name: "create_dish")]
