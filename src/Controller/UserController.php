@@ -32,7 +32,7 @@ class UserController extends AbstractController {
             $em = $doctrine->getManager();
             $em->persist($user);
             $em->flush();
-            $this->addFlash('success', 'Mail de confirmation envoyé');
+            // $this->addFlash('success', 'Mail de confirmation envoyé');
             return $this->redirectToRoute("app_login");
         }
 

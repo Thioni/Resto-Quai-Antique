@@ -8,8 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity('email', 'Un compte utilise déja cette adresse mail.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,12 +21,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\Email(
+        message: 'L\'adresse {{ value }} n\'est pas une adresse valide.',
+      )]
     private ?string $email = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\Length (
+        min: 2,
+        max: 20,
+        minMessage: 'Le prénom doit comporter au moins 2 caractères',
+        maxMessage: 'Le prénom doit comporter au maximum 20 caractères'
+      )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\Length (
+        min: 2,
+        max: 20,
+        minMessage: 'Le nom de famille doit comporter au moins 2 caractères',
+        maxMessage: 'Le nom de famille doit comporter au maximum 20 caractères'
+      )]
     private ?string $lastname = null;
 
     #[ORM\Column]
@@ -33,6 +51,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\Regex(
+        pattern: "$(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[\W]).{8,64}$",
+        match: true,
+        message: 'Le mot de passe doit inclure au minimum huit caractères dont au moins une majuscule, une minuscule, un chiffre et un caractère spécial.',
+      )]
     private ?string $password = null;
 
     #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'users')]
