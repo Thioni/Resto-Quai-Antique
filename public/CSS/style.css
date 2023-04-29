@@ -73,6 +73,10 @@ nav, .footer, .btn, .dishNameList, .dishName {
     object-fit: fill;
 }
 
+.allergyMatch {
+    color: rgb(255, 0, 0);
+}
+
 @media screen and (min-width : 756px) {
     .descBox {
         height: 190px;  
