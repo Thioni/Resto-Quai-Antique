@@ -20,9 +20,29 @@ class BookingController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $timeslot = $booking->getTimeslot();
+
+            $day = $timeslot->format('N');
+            $time = $timeslot->format('H:i:s');
+
+            if ($day == 2 || $day == 4 || $time < '11:00:00' || ($time >= '13:00:00' 
+                && $time < '18:00:00') || $time >= '22:00:00') {
+                    $this->addFlash('error', 'Veuillez réserver pendant les horaires d\'ouverture.');
+                    return $this->redirectToRoute('user_booking');
+            }
+
             $em = $doctrine->getManager();
-            $em->persist($booking);
-            $em->flush();
+            $freeSeats = $booking->getSeats();
+
+            //nombre de places dispos pour le moment fixe et arbitraire
+            if ($freeSeats > 10) {
+                $this->addFlash('error', 'Il ne reste plus assez de places disponibles.');
+                return $this->redirectToRoute('user_booking');
+            }
+
+            // $em->persist($booking);
+            // $em->flush();
             $this->addFlash('success', 'Réservation validée.');
             return $this->redirectToRoute("dish_selection");
         }

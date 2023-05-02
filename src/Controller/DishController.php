@@ -49,12 +49,10 @@ class DishController extends AbstractController {
         $filteredDishes = array_filter($dishes, function ($dish) use ($allergies) {
             foreach ($allergies as $allergy) {
                 if ($dish->getAllergen()->contains($allergy)) {
-                    // A virer et remplacer par une propriété native de dish
-                    $dish->allergyMatch = true;
+                     $dish->allergyMatch = true;
                     return true;
                 }
             }
-            // A virer et remplacer par une propriété native de dish
             $dish->allergyMatch = false;
             return true;
         });

@@ -36,7 +36,7 @@ class BookingType extends AbstractType {
             ])
             ->add('allergy', EntityType::class, [
                 'class' => Allergen::class,
-                'label' => "Allergies",
+                'label' => "Signaler des allergies",
                 'choice_label' => 'ingredient',
                 'multiple' => true,
                 'expanded' => true,

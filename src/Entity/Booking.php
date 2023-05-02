@@ -43,8 +43,12 @@ class Booking
 
     #[ORM\Column]
     #[Assert\GreaterThan(
-        1,
+        0,
         message: 'Le nombre de places doit au minimum être égale à 1',
+    )]
+    #[Assert\LessThanOrEqual(
+        15,
+        message: 'Le nombre de places doit au maximum être égale à 15',
     )]
     private ?int $seats = null;
 
