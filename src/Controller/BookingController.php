@@ -34,10 +34,10 @@ class BookingController extends AbstractController {
 
             $em = $doctrine->getManager();
             $freeSeats = $booking->getSeats();
+            $availableSeats = $em->getRepository(Booking::class)->getAvailableSeats($timeslot);
 
-            //nombre de places dispos pour le moment fixe et arbitraire
-            if ($freeSeats > 10) {
-                $this->addFlash('error', 'Il ne reste plus assez de places disponibles.');
+            if ($freeSeats > $availableSeats) {
+                $this->addFlash('error', 'Il ne reste plus assez de places disponibles sur ce créneau.');
                 return $this->redirectToRoute('user_booking');
             }
 

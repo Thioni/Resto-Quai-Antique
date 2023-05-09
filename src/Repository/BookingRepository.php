@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Booking;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,34 @@ class BookingRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function getAvailableSeats(\DateTimeInterface $timeslot): int
+    {
+        $em = $this->getEntityManager();
+
+        $endTime = DateTime::createFromFormat('Y-m-d H:i:s', $timeslot->format('Y-m-d H:i:s'))
+            ->modify('+1 hour')
+            ->format('Y-m-d H:i:s');
+
+            dump($endTime);
+    
+        $query = $em->createQuery('
+            SELECT SUM(b.seats)
+            FROM App\Entity\Booking b
+            WHERE b.timeslot >= :timeslot
+            AND b.timeslot < :endTime
+        ')
+        ->setParameter('timeslot', $timeslot)
+        ->setParameter('endTime', $endTime);
+    
+        $result = $query->getSingleScalarResult();
+        $reservedSeats = (int) $result;
+    
+        // Le Nombre de places maximum dans le restaurant est de 90
+        $availableSeats = 90 - $reservedSeats;
+        dump($reservedSeats);
+        return $availableSeats;
     }
 
 //    /**
