@@ -41,8 +41,8 @@ class BookingController extends AbstractController {
                 return $this->redirectToRoute('user_booking');
             }
 
-            // $em->persist($booking);
-            // $em->flush();
+            $em->persist($booking);
+            $em->flush();
             $this->addFlash('success', 'Réservation validée.');
             return $this->redirectToRoute("dish_selection");
         }

@@ -44,19 +44,24 @@ class BookingRepository extends ServiceEntityRepository
     {
         $em = $this->getEntityManager();
 
+        $startTime = DateTime::createFromFormat('Y-m-d H:i:s', $timeslot->format('Y-m-d H:i:s'));
         $endTime = DateTime::createFromFormat('Y-m-d H:i:s', $timeslot->format('Y-m-d H:i:s'))
-            ->modify('+1 hour')
-            ->format('Y-m-d H:i:s');
-
-            dump($endTime);
+        ->modify('+1 hour')
+        ->format('Y-m-d H:i:s');
     
         $query = $em->createQuery('
             SELECT SUM(b.seats)
             FROM App\Entity\Booking b
-            WHERE b.timeslot >= :timeslot
-            AND b.timeslot < :endTime
+            WHERE (
+                b.timeslot >= :startTime
+                AND b.timeslot < :endTime
+            )
+            OR (
+                b.timeslot < :startTime
+                AND DATE_ADD(b.timeslot, 1, \'HOUR\') > :startTime
+            )
         ')
-        ->setParameter('timeslot', $timeslot)
+        ->setParameter('startTime', $startTime)
         ->setParameter('endTime', $endTime);
     
         $result = $query->getSingleScalarResult();
@@ -64,7 +69,9 @@ class BookingRepository extends ServiceEntityRepository
     
         // Le Nombre de places maximum dans le restaurant est de 90
         $availableSeats = 90 - $reservedSeats;
-        dump($reservedSeats);
+
+        // dump($startTime, $endTime, $reservedSeats);
+
         return $availableSeats;
     }
 
