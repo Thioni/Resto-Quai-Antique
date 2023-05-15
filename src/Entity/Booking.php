@@ -59,7 +59,7 @@ class Booking
     )]
     private ?\DateTimeInterface $timeslot = null;
 
-    #[ORM\ManyToMany(targetEntity: allergen::class, inversedBy: 'bookings')]
+    #[ORM\ManyToMany(targetEntity: Allergen::class, inversedBy: 'bookings')]
     private Collection $allergy;
 
     #[ORM\Column(length: 255, nullable: true)]

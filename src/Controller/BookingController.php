@@ -52,5 +52,14 @@ class BookingController extends AbstractController {
         ]);
     }
 
+    #[Route("/booking-list", name: "booking_list")]
+    public function getAll(ManagerRegistry $doctrine): Response {
+        $repo = $doctrine->getRepository(Booking::class);
+        $bookings = $repo->findAll();
+
+        return $this->render('booking/list.html.twig', [
+            "bookings" => $bookings,
+        ]);
+    }
 
 }

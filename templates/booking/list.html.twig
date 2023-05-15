@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des réservations{% endblock %}
+
+{% block body %}
+
+  <div class="text-center text-light bg-success">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+      {{ flashMessage}}
+    {% endfor %}
+  </div>
+
+  <div class="container-fluid">
+
+    <h1 class="text-center my-5">Réservations</h1>
+
+      <div class="row justify-content-center">
+        {% for booking in bookings %}
+          <div class="col-md-6 col-xl-4">
+            <div class="row dishCard descText text-center mx-auto mb-3">
+								<div class="col-4 text-dark">Date:</div>
+								<div class="col-8">
+              	 	{{ booking.timeslot|date('Y-m-d H:i:s') }}              	
+              	</div>
+								<div class="col-4 text-dark">Nom:</div>
+              	<div class="col-8">
+              		{{ booking.firstname }} {{ booking.lastname }}
+              	</div>
+								<div class="col-4 text-dark">Email:</div>
+              	<div class="col-8">
+              	  {{ booking.email }}
+              	</div>
+								<div class="col-4 text-dark">Places:</div>
+              	<div class="col-8">
+              	  {{ booking.seats }}
+              	</div>
+								<div class="col-12 text-dark text-center">Allergies:</div>
+              	  {% for allergy in booking.getAllergy %}
+              	    <div class="col-12 col-lg-6">
+              	      {{ allergy.ingredient}}
+              	    </div>
+              	  {% endfor %}
+								<div class="col-12 text-dark text-center mt-1">Commentaire:</div>
+              	<div class="col-12">
+              	  {{ booking.comment }}
+              	</div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+  </div>
+
+
+{% endblock %}
