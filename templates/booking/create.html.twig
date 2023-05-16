@@ -12,67 +12,71 @@
 
     <div class="container-fluid">
 
+      {% if app.request.get("_route") =="create_booking" %}
         <h1 class="text-center my-5">Réserver</h1>
-        <p class="text-center text-danger">*Attention: Les reservations sont closes 1 heure avant fermeture.*</p>
+        <p class="text-center text-danger">*Attention: Les réservations sont closes 1 heure avant fermeture.*</p>
+      {% else %}
+        <h1 class="text-center fs-4 mt-5">Modifier la réservation pour {{ booking.lastname }} {{ booking.firstname }}</h1>
+      {% endif %}        
 
-            {{ form_start(form) }}
+        {{ form_start(form) }}
 
-             {% if form_errors(form) %}
-                <div class="alert alert-danger">
-                {{ form_errors(form) }}
-                </div>
-            {% endif %}
-
-            <div class="row justify-content-center mt-5">
-                 <div class="col-12 col-lg-4 col-xl-2">
-                     {{ form_row(form.firstname) }}
-                 </div>
-                 <div class="col-12 col-lg-4 col-xl-2">
-                     {{ form_row(form.lastname) }}
-                 </div>
+          {% if form_errors(form) %}
+            <div class="alert alert-danger">
+              {{ form_errors(form) }}
             </div>
-            <div class="row justify-content-center">
-                    <div class="col-12 col-lg-6 col-xl-4">
-                        {{ form_row(form.email) }}
-                    </div>
+          {% endif %}
+
+          <div class="row justify-content-center mt-5">
+            <div class="col-12 col-lg-4 col-xl-2">
+              {{ form_row(form.firstname) }}
             </div>
+            <div class="col-12 col-lg-4 col-xl-2">
+              {{ form_row(form.lastname) }}
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-lg-6 col-xl-4">
+              {{ form_row(form.email) }}
+            </div>
+          </div>
             <div class="row justify-content-start">
-                    <div class="col-6 col-xl-6 align-self-end text-start
-                    text-lg-end">
-                                {{ form_label(form.seats) }}
-                    </div>
-                    <div class="col-3 col-lg-2 col-xl-1">
-                                {{ form_widget(form.seats) }}                            
-                    </div>
-                    <div class="col-12 text-center">
-                                {{ form_errors(form.seats) }}
-                    </div>
-                    <div class="col-6 col-lg-6 col-xl-6
-                    text-lg-end">
-                                {{ form_label(form.timeslot) }}
-                    </div>
-                    <div class="col-6 col-lg-4 col-xl-2">
-                                {{ form_widget(form.timeslot) }}
-                    </div>
-                    <div class="col-12 text-center">
-                                {{ form_errors(form.timeslot) }}
-                    </div>
+              <div class="col-6 col-xl-6 align-self-end text-start
+              text-lg-end">
+                {{ form_label(form.seats) }}
+              </div>
+              <div class="col-3 col-lg-2 col-xl-1">
+                {{ form_widget(form.seats) }}                            
+              </div>
+              <div class="col-12 text-center">
+                {{ form_errors(form.seats) }}
+              </div>
+              <div class="col-6 col-lg-6 col-xl-6
+              text-lg-end">
+                {{ form_label(form.timeslot) }}
+              </div>
+              <div class="col-6 col-lg-4 col-xl-2">
+                {{ form_widget(form.timeslot) }}
+              </div>
+              <div class="col-12 text-center">
+                {{ form_errors(form.timeslot) }}
+              </div>
             </div>
             <div class="row justify-content-end mt-2">
-                    <div class="col-12 col-lg-6">
-                        {{ form_row(form.allergy) }}
-                    </div>
+              <div class="col-12 col-lg-6">
+                {{ form_row(form.allergy) }}
+              </div>
             </div>
             <div class="row justify-content-center">
-                    <div class="col-12 col-lg-6 col-xl-4">
-                        {{ form_row(form.comment) }}
-                    </div>
+              <div class="col-12 col-lg-6 col-xl-4">
+                {{ form_row(form.comment) }}
+              </div>
             </div>
 
             <div class="row">
-                <div class="col text-center my-5">
-                    <input type="submit" value="Valider" class="btn">
-                </div>  
+              <div class="col text-center my-5">
+                <input type="submit" value="Valider" class="btn">
+              </div>  
             </div>
 
             {{ form_rest(form) }}

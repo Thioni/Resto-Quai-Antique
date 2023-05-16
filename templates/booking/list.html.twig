@@ -14,7 +14,7 @@
 
     <h1 class="text-center my-5">Réservations</h1>
 
-      <div class="row justify-content-center">
+    	<div class="row justify-content-center">
         {% for booking in bookings %}
           <div class="col-md-6 col-xl-4">
             <div class="row dishCard descText text-center mx-auto mb-3">
@@ -44,7 +44,19 @@
               	<div class="col-12">
               	  {{ booking.comment }}
               	</div>
-            </div>
+                {# Delete/Update #}
+                <div class="row justify-content-between">
+                  <div class="col-3 mt-2 mb-1">
+                    <div class="btn" data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ booking.id }}">
+                    Supprimer
+                    {% include "booking/modalDelete.html.twig" %}
+                    </div>
+                  </div>
+                  <div class="col-3 mt-2 mb-1">
+                    <a href="admin/update-booking/{{ booking.id }}" class="btn">Modifier</a>
+                  </div>
+                </div>
+            </div>         
           </div>
         {% endfor %}
       </div>
